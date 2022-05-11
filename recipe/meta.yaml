@@ -21,6 +21,7 @@ requirements:
   run:
     - python >=3.6
     - event-model >=1.8.0
+    - setuptools
     - suitcase-utils
     - tifffile
 
