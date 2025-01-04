@@ -6,26 +6,28 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 5c4083f38e7a17c95f208637be151af69deff8ed8097409f89933288e0c2743f
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - event-model >=1.8.0
     - setuptools
     - suitcase-utils
     - tifffile
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - suitcase.tiff_series
     - suitcase.tiff_series.tests
